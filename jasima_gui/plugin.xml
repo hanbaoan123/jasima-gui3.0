@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="jasima_gui.objectEditors" name="Object Editor" schema="schema/jasima_gui.objectEditors.exsd"/>
+   <extension-point id="jasima_gui.propertyFilters" name="Property filters" schema="schema/jasima_gui.propertyFilters.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="jasima"
+            extensions="jasima"
+            icon="icons/jasima.png"
+            class="jasima_gui.editor.TopLevelEditor"
+            id="jasima_gui.editors.ObjectTreeEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Jasima"
+            id="jasima_gui">
+      </category>
+      <wizard
+            category="jasima_gui"
+            class="jasima_gui.wizards.JasimaNewWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/jasima.png"
+            id="jasima_gui.wizards.JasimaNewWizard"
+            name="jasima Experiment">
+         <description>
+            Create a new Jasima experiment in XML format
+         </description>
+      </wizard>
+      <wizard
+            category="jasima_gui"
+            class="jasima_gui.wizards.JasimaNewProjectWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            icon="icons/jasima.png"
+            id="jasima_gui.wizards.JasimaNewProjectWizard"
+            name="jasima Project"
+            project="true">
+         <description>
+            Create a new Maven Project including all Jasima dependencies
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="jasima_gui.launcher.SimulationLauncher"
+            id="jasima_gui.jasimaLaunchConfigurationType"
+            modes="run,debug"
+            name="Jasima Simulation">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="jasima_gui.jasimaLaunchConfigurationType"
+            icon="icons/jasima.png"
+            id="jasima_gui.jasimaLaunchConfigurationImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="jasima_gui.launcher.SimulationTabGroup"
+            id="jasima_gui.jasimaLaunchConfigurationTabGroup"
+            type="jasima_gui.jasimaLaunchConfigurationType">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="jasima_gui.launcher.SimulationLaunchShortcut"
+            icon="icons/jasima.png"
+            id="jasima_gui.simulationLaunchShortcut"
+            label="Jasima Simulation"
+            modes="run,debug">
+         <contextualLaunch>
+            <enablement>
+               <iterate>
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                     <test
+                           property="org.eclipse.core.resources.name"
+                           value="*.jasima">
+                     </test>
+                  </adapt></iterate>
+               <with
+                     variable="selection">
+               </with>
+               <count
+                     value="1">
+               </count></enablement></contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="jasima_gui.launcher.ExcelLaunchShortcut"
+            icon="icons/jasima.png"
+            id="jasima_gui.excelLaunchShortcut"
+            label="Jasima Simulation (XLS)"
+            modes="run,debug">
+         <contextualLaunch>
+            <enablement>
+               <iterate>
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                     <test
+                           property="org.eclipse.core.resources.name"
+                           value="*.xls">
+                     </test>
+                  </adapt></iterate>
+               <with
+                     variable="selection">
+               </with>
+               <count
+                     value="1">
+               </count></enablement></contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commandImages">
+      <image
+            commandId="jasima_gui.commands.objNew"
+            icon="icons/obj_new.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.objNewClass"
+            icon="icons/obj_new_class.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.objDelete"
+            icon="icons/obj_delete.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.objSave"
+            icon="icons/obj_save.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.objLoad"
+            icon="icons/obj_load.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.runExperiment"
+            icon="icons/run_experiment.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.debugExperiment"
+            icon="icons/debug_experiment.png">
+      </image>
+      <image
+            commandId="jasima_gui.commands.openWebpage"
+            icon="icons/jasima.png">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="jasima_gui.commands.objNew"
+            name="New">
+      </command>
+      <command
+            id="jasima_gui.commands.objNewClass"
+            name="New Class">
+      </command>
+      <command
+            id="jasima_gui.commands.objDelete"
+            name="Delete">
+      </command>
+      <command
+            id="jasima_gui.commands.objLoad"
+            name="Load">
+      </command>
+      <command
+            id="jasima_gui.commands.objSave"
+            name="Save">
+      </command>
+      <command
+            id="jasima_gui.commands.runExperiment"
+            name="Run Experiment">
+      </command>
+      <command
+            id="jasima_gui.commands.debugExperiment"
+            name="Debug Experiment">
+      </command>
+      <command
+            id="jasima_gui.commands.openWebpage"
+            name="Open Jasima web page">
+      </command>
+   </extension>
+   <extension
+         point="jasima_gui.objectEditors">
+      <objectEditor
+            class="jasima_gui.editors.ReferenceEditor"
+            handlesLifeCycle="true"
+            name="Object editor"
+            propertyType="java.lang.Object">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.BeanEditor"
+            name="Bean editor"
+            propertyType="java.lang.Object">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.ColorEditor"
+            handlesLifeCycle="true"
+            name="Color Editor"
+            propertyType="java.awt.Color">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="String editor"
+            propertyType="java.lang.String">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.ClassEditor"
+            handlesLifeCycle="true"
+            name="Class editor"
+            propertyType="java.lang.Class">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.ListEditor"
+            handlesLifeCycle="true"
+            name="List editor (Collection)"
+            propertyType="java.util.Collection">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.ListEditor"
+            handlesLifeCycle="true"
+            name="List editor (Array)"
+            propertyType="java.lang.Object[]">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.BoolEditor"
+            handlesLifeCycle="true"
+            name="Boolean editor"
+            propertyType="java.lang.Boolean">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.IntEditor"
+            handlesLifeCycle="true"
+            name="Integer editor"
+            propertyType="java.lang.Integer">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="false"
+            name="Number editor"
+            propertyType="java.lang.Number">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.EnumEditor"
+            handlesLifeCycle="true"
+            name="Enum editor"
+            propertyType="java.lang.Enum">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.DblStreamEditor"
+            handlesLifeCycle="true"
+            propertyType="jasima.core.random.continuous.DblStream">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Character editor"
+            propertyType="java.lang.Character">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Long editor"
+            propertyType="java.lang.Long">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Short editor"
+            propertyType="java.lang.Short">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Byte editor"
+            propertyType="java.lang.Byte">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Double editor"
+            propertyType="java.lang.Double">
+      </objectEditor>
+      <objectEditor
+            class="jasima_gui.editors.TextEditor"
+            handlesLifeCycle="true"
+            name="Float editor"
+            propertyType="java.lang.Float">
+      </objectEditor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <newWizardShortcut
+               id="jasima_gui.wizards.JasimaNewProjectWizard">
+         </newWizardShortcut>
+         <newWizardShortcut
+               id="jasima_gui.wizards.JasimaNewWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="jasima_gui.propertyFilters">
+      <propertyFilter
+            propertyType="jasima.core.experiment.FullFactorialExperiment">
+         <addProperty
+               propertyClass="jasima_gui.editor.DirectProperty">
+            <attribute
+                  name="name"
+                  value="factors">
+            </attribute>
+            <attribute
+                  name="description"
+                  value="The parameters that will be changed for each execution of the inner experiment">
+            </attribute>
+            <attribute
+                  name="type"
+                  value="jasima_gui.editors.FactorsEditor">
+            </attribute>
+         </addProperty>
+      </propertyFilter>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="jasima_gui.pref.JasimaPage"
+            id="jasima_gui.jasimaPrefs"
+            name="Jasima">
+      </page>
+   </extension>
+   <extension
+         id="jasima_gui.pref"
+         name="Jasima preferences"
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="jasima_gui.pref.Initializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="jasima_gui.ResetPerspective"></startup>
+   </extension>
+</plugin>

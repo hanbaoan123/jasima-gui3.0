@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="jasima_gui" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="jasima_gui" id="jasima_gui.objectEditors" name="Object Editor"/>
+      </appinfo>
+      <documentation>
+         [Enter description of this extension point.]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="objectEditor"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="objectEditor">
+      <complexType>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  The name of this editor entry, for readability.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="propertyType" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The canonical name (as defined by the JLS) of a type the editor can be used for.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="propertyName" type="string">
+            <annotation>
+               <documentation>
+                  If this attribute is set, this rule only applies to a property with this name contained in an object assignable to propertyType.  If this is not set, this rule applies to any property assignable to propertyType.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The implementation of EditorWidget that should be used to edit
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="jasima_gui.editors.EditorWidget:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="handlesLifeCycle" type="boolean">
+            <annotation>
+               <documentation>
+                  Setting this attribute to true signals that the EditorWidget implementation handles creating and deleting the object.  Often, this is handled by one generic java.lang.Object editor which creates more specific editors depending on the actual type of the property value.  Editors for final types like String and Integer might also choose to handle the life cycle to make the user interface cleaner.  Setting this property doesn&apos;t make a difference if propertyType is a primitive type, since those don&apos;t have a life cycle.  Editors that don&apos;t do life cycle management are preferred over those that do if the property can&apos;t be set to null.  For properties that can be set to null, only editors handling the object&apos;s life cycle are considered in the first place.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

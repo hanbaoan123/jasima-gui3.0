@@ -1,0 +1,5 @@
+<!-- Removed one property -->
+<jasima__gui.test.TestBean>
+  <int class="int">0</int>
+  <integer class="null"/>
+</jasima__gui.test.TestBean>
