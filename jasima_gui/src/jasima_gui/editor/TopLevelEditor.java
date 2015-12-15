@@ -28,6 +28,7 @@ import jasima_gui.PropertyToolTip;
 import jasima_gui.Serialization;
 import jasima_gui.launcher.SimulationLaunchShortcut;
 import jasima_gui.util.BrowserEx;
+import jasima_gui.util.IOUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -40,8 +41,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2;
 import org.eclipse.jdt.internal.ui.viewsupport.JavaElementLinks;
+import org.eclipse.jdt.ui.JavadocContentAccess;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -484,7 +485,7 @@ public class TopLevelEditor extends EditorPart implements SelectionListener {
 		String doc;
 		try {
 			IType type = getJavaProject().findType(root.getClass().getCanonicalName());
-			doc = JavadocContentAccess2.getHTMLContent(type, true);
+			doc = IOUtil.readFully(JavadocContentAccess.getHTMLContentReader(type, true, true));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;

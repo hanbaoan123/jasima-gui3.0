@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 package jasima_gui.editor;
 
+import jasima_gui.util.IOUtil;
+import jasima_gui.util.TypeUtil;
+
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,11 +30,8 @@ import java.lang.reflect.Type;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.internal.ui.text.javadoc.JavadocContentAccess2;
+import org.eclipse.jdt.ui.JavadocContentAccess;
 
-import jasima_gui.util.TypeUtil;
-
-@SuppressWarnings("restriction")
 public class BeanProperty implements IProperty {
 
 	protected final IProperty parent;
@@ -71,7 +71,7 @@ public class BeanProperty implements IProperty {
 				if (mtd.getNumberOfParameters() != 1)
 					continue;
 				if (mtd.getElementName().equals(writeMethod.getName())) {
-					return JavadocContentAccess2.getHTMLContent(mtd, true);
+					return IOUtil.readFully(JavadocContentAccess.getHTMLContentReader(mtd, true, true));
 				}
 			}
 		} catch (CoreException e) {
