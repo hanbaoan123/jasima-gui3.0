@@ -102,6 +102,7 @@ public class PropertyToolTip extends ToolTip {
 		comp.setLayout(layout);
 
 		Browser browser = new Browser(comp, SWT.NONE);
+		browser.setJavascriptEnabled(false);
 		GridDataFactory.fillDefaults().hint(400, 200).applyTo(browser);
 
 		ColorRegistry colors = PlatformUI.getWorkbench().getThemeManager().getCurrentTheme().getColorRegistry();
