@@ -107,7 +107,7 @@ public class PropertyToolTip extends ToolTip {
 
 		ColorRegistry colors = PlatformUI.getWorkbench().getThemeManager().getCurrentTheme().getColorRegistry();
 		Color bgColor = colors.get("org.eclipse.jdt.ui.JavadocView.backgroundColor");
-
+		Color fgColor = comp.getDisplay().getSystemColor(SWT.COLOR_INFO_FOREGROUND);
 		Class<?> tmp = TypeUtil.toClass(prop.getType());
 		while (tmp.isArray())
 			tmp = tmp.getComponentType();
@@ -119,6 +119,8 @@ public class PropertyToolTip extends ToolTip {
 		htmlDoc.append(getJavadocStylesheet());
 		htmlDoc.append("html {background-color:");
 		htmlDoc.append(color2HTML(bgColor));
+		htmlDoc.append(";color:");
+		htmlDoc.append(color2HTML(fgColor));
 		htmlDoc.append(";padding:10px} " //
 				+ "dl {margin: 0px} " //
 				+ "dt {margin-top: 0.5em}");
