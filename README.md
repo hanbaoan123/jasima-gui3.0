@@ -14,4 +14,4 @@ explain dependencies
 
 ### Contact ###
 
-Torsten Hildebrandt <torsten@jasima.net>
+Torsten Hildebrandt <torsten@jasima.org>
