@@ -1,8 +1,8 @@
 # jasima GUI #
 
-jasima GUI is an Eclipse plugin that can be used to create, configure and run jasima experiments. jasima is the JAva SImulator for MAnufacturing and logistics, its homepage can be found at http://jasima.org.
+jasima GUI is an Eclipse plugin that can be used to create, configure and run jasima experiments. jasima is the JAva SImulator for MAnufacturing and logistics, its homepage can be found at http://jasima.net.
 
-To simply install and run jasima GUI, please follow the instructions on http://jasima.org. The information below is only relevant for you, if you want to access/modify the source code of the Eclipse plugin.
+To simply install and run jasima GUI, please follow the instructions on http://jasima.net. The information below is only relevant for you, if you want to access/modify the source code of the Eclipse plugin.
 
 ### Import ###
 
@@ -14,4 +14,4 @@ explain dependencies
 
 ### Contact ###
 
-Torsten Hildebrandt <torsten@jasima.org>
+Torsten Hildebrandt <torsten@jasima.net>
