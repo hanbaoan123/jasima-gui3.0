@@ -308,6 +308,15 @@
                id="jasima_gui.wizards.JasimaNewWizard">
          </newWizardShortcut>
       </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jst.j2ee.J2EEPerspective">
+         <newWizardShortcut
+               id="jasima_gui.wizards.JasimaNewProjectWizard">
+         </newWizardShortcut>
+         <newWizardShortcut
+               id="jasima_gui.wizards.JasimaNewWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
    </extension>
    <extension
          point="jasima_gui.propertyFilters">
