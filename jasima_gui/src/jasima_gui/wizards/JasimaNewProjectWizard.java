@@ -19,8 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 package jasima_gui.wizards;
 
-import jasima_gui.pref.Pref;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -42,12 +40,16 @@ import org.eclipse.m2e.core.MavenPlugin;
 import org.eclipse.m2e.core.project.ResolverConfiguration;
 import org.eclipse.m2e.jdt.IClasspathManager;
 import org.eclipse.m2e.jdt.MavenJdtPlugin;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+
+import jasima_gui.pref.Pref;
 
 public class JasimaNewProjectWizard extends Wizard implements INewWizard, IExecutableExtension {
 
@@ -88,8 +90,21 @@ public class JasimaNewProjectWizard extends Wizard implements INewWizard, IExecu
 		return mainPage.canFlipToNextPage();
 	}
 
+	private void disableRecursively(Control ctrl) {
+		ctrl.setEnabled(false);
+		if (ctrl instanceof Composite) {
+			for (Control c : ((Composite) ctrl).getChildren()) {
+				disableRecursively(c);
+			}
+		}
+	}
+
 	public boolean performFinish() {
 		try {
+			disableRecursively(getShell());
+			while (getShell().getDisplay().readAndDispatch())
+				;
+
 			lastPage.performFinish(new NullProgressMonitor());
 			IJavaProject proj = lastPage.getJavaProject();
 			String line;
